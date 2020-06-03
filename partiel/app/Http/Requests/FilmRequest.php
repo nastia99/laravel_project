@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class InsertFilmRequest extends FormRequest
+class FilmRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,11 +23,11 @@ class InsertFilmRequest extends FormRequest
      */
     public function rules()
     {
-        /*return [
+        return [
             'titre' => ['required', 'string', 'max:100'],
-            'categorie' => ['required', 'string', 'max:100'],
-            'anneeSortie' => ['required', 'year', 'max:100'],
-            'description' => ['required', 'string', 'max:100'],
-        ];*/
+            'categorie_id' => ['required'],
+            'anneeSortie' => ['required', 'Numeric', 'min:1900', 'max:2050'],
+            'description' => ['required', 'string'],
+        ];
     }
 }

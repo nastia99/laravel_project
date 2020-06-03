@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\modele\Categorie;
 use App\modele\Film;
+use App\Http\Requests\FilmRequest;
 
 class FilmController extends Controller
 {
@@ -17,6 +17,7 @@ class FilmController extends Controller
     {
         $query = $laCategorie ? Categorie::where('id',"$laCategorie")->firstOrFail()->films() : Film::query();
         $lesFilms = $query->get();
+        $films = Film::all();
         $categories = Categorie::all();
         return view('listeFilms', compact('lesFilms', 'categories', 'laCategorie'));
     }
@@ -28,7 +29,7 @@ class FilmController extends Controller
      */
     public function create()
     {
-        //return view('creerFilm');
+        return view('creerFilm');
     }
 
     /**
@@ -37,9 +38,10 @@ class FilmController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(FilmRequest $filmRequest)
     {
-        //
+        Film::create($filmRequest->all());
+        return redirect()->route('films.index')->with('info', 'Le film a bien été créé');
     }
 
     /**
@@ -62,7 +64,11 @@ class FilmController extends Controller
      */
     public function edit(Film $film)
     {
-        //return view('modifierFilm',compact('film'));
+        $categories = [];
+        foreach(Categorie::all() as $categorie) {
+            $categories[$categorie->id] = $categorie->libelle;
+        }
+        return view('modifierFilm', compact('film', 'categories'));
     }
 
     /**
@@ -72,9 +78,10 @@ class FilmController extends Controller
      * @param  \App\Film  $film
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Film $film)
+    public function update(FilmRequest $request, Film $film)
     {
-        //
+        $film->update($request->all());
+        return redirect()->route('films.index')->with('info', 'Le film a été modifié avec success');
     }
 
     /**

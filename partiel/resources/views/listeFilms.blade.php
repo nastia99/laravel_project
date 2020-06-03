@@ -48,20 +48,8 @@
                             <td><strong>{{ $film->titre}}</strong>  </td>
                             <td> {{ $film->categorie->libelle}}</td>
                             <td><a class="btn btn-primary" href="{{ route('films.show', $film->id) }}">Voir</a></td>
-                            <td>
-                                <form action="{{ route('films.edit', $film->id) }}" method="post">
-                                    @csrf
-                                    @method('EDIT')
-                                    <button class="btn btn-warning">Modifier</button>
-                                </form>
-                            </td>
-                            <td>
-                                <form action="{{ route('films.create', $film->id) }}" method="post">
-                                    @csrf
-                                    @method('CREATE')
-                                    <button class="btn btn-info">Créer un film</button>
-                                </form>
-                            </td>
+                            <td><a class="btn btn-warning" href="{{ route('films.edit', $film->id) }}">Modifier</a></td>
+                            <td><a class="btn btn-info" href="{{ route('films.create', $film->id) }}">Ajouter un film</a></td>
                             <td>
                                 <form action="{{ route('films.destroy', $film->id) }}" method="post">
                                     @csrf

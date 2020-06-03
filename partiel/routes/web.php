@@ -14,18 +14,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('films.index');
 });
 
 Route::resource('films', 'FilmController');
 
 Route::get('categorie/{laCategorie}/films', 'FilmController@index')->name('films.categorie');
+Route::get('/categorie/{id}', 'FilmController@categorie');
+
 
 Route::resource('categories', 'CategorieController');
 
-//Route::get('creerFilmFormulaire', 'FilmController@getInfos');
-//Route::post('creerFilmFormulaire', 'FilmController@postInfos');
-
-//Route::get('creerCategorieFormulaire', 'CategorieController@getInfos');
-//Route::post('creerCategorieFormulaire', 'CategorieController@postInfos');
 

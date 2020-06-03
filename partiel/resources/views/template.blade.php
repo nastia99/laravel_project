@@ -35,8 +35,8 @@
                         Ajouter
                     </a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="{{url('/films.create')}}">Ajouter un film</a>
-                        <!--<a class="dropdown-item" href="{{url('/categories.create')}}">Ajouter une catégorie</a>-->
+                        <a class="dropdown-item" href="{{route('films.create', $film->id)}}">Ajouter un film</a>
+                        <a class="dropdown-item" href="{{route('categories.show', $categorie->id)}}">Ajouter une catégorie</a>
                     </div>
                 </li>
                 <li class="nav-item">

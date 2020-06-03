@@ -18,8 +18,8 @@ class CreateFilmsTable extends Migration
             $table->string('titre');
             $table->year('anneeSortie');
             $table->text('description');
-            $table->unsignedBigInteger('id_categorie');
-            $table->foreign('id_categorie')
+            $table->unsignedBigInteger('categorie_id');
+            $table->foreign('categorie_id')
                 ->references('id')
                 ->on('categories')
                 ->onDelete('cascade')

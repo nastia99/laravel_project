@@ -23,7 +23,7 @@ class CategorieController extends Controller
      */
     public function create()
     {
-
+        return view('creerCategorie');
     }
 
     /**
@@ -56,7 +56,7 @@ class CategorieController extends Controller
      */
     public function edit($id)
     {
-        //
+
     }
 
     /**
